@@ -33,14 +33,23 @@ echo "[+] Transferring binary and updating boot script. Please wait..."
 
 # We send a single compound command so the camera's shell executes it synchronously
 # without relying on arbitrary sleep timers.
-CMD="wget http://$HOST_IP:8000/droprcam -O /tmp/droprcam && chmod +x /tmp/droprcam && (killall droprcam 2>/dev/null; sleep 1); mv /tmp/droprcam /root/droprcam && rm -f /mnt/dropcam/dummy_connect.sh && sed -i 's/sleep 3600/\/root\/droprcam\n    sleep 5/g' /mnt/dropcam/ie_auto.sh && echo 'Success' && sync && reboot"
+CMD="wget http://$HOST_IP:8000/droprcam -O /tmp/droprcam && chmod +x /tmp/droprcam && (killall droprcam 2>/dev/null; sleep 1); mv /tmp/droprcam /root/droprcam && grep -q droprcam /mnt/dropcam/ie_auto.sh || echo '(while true; do /root/droprcam; sleep 5; done) &' >> /mnt/dropcam/ie_auto.sh && echo 'Success' && sync && reboot"
 
 (
   sleep 1
   echo "$CMD"
   sleep 15
-) | telnet $CAM_IP
+) | telnet $CAM_IP || true
+
+echo "[+] Waiting for camera to reboot and start Droprcam..."
+sleep 20
+
+# Curl loop to wait for the HTTP API to become available
+until curl -s --max-time 1 "http://$CAM_IP:8080" > /dev/null 2>&1; do
+    echo "  ... waiting for $CAM_IP:8080"
+    sleep 2
+done
 
 echo ""
 echo "[✓] Installation script finished!"
-echo "[✓] The camera should now be rebooting and will start Droprcam automatically."
+echo "[✓] Droprcam is successfully running and the API is reachable!"
