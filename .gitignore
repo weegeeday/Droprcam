@@ -1,0 +1,11 @@
+# Compiled binaries
+droprcam
+dropcam_daemon
+droprcam_arm5
+droprcam_go120
+
+# Downloaded Go Toolchain
+go1.20/
+
+# Scratch/tmp
+*.tar.gz
