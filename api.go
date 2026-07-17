@@ -62,8 +62,9 @@ func StartAPI() error {
 		w.Header().Set("Content-Type", "application/octet-stream")
 		w.Header().Set("Connection", "keep-alive")
 
-		// Start arecord and pipe its output directly to the HTTP response
-		cmd := exec.Command("arecord", "-f", "S16_LE", "-r", "16000", "-c", "1")
+		// Bind the command strictly to the HTTP request context.
+		// When the client disconnects, the context cancels and kills arecord automatically!
+		cmd := exec.CommandContext(r.Context(), "arecord", "-f", "S16_LE", "-r", "16000", "-c", "1")
 		cmd.Stdout = w
 		
 		fmt.Println("[+] Client connected to /mic. Streaming audio...")
