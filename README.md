@@ -8,7 +8,7 @@ This completely frees the camera, turning it into a standard local IP camera per
 
 
 
-## Plugins (Using this camera as a device on Home Assitant/other)
+## Plugins (Using this camera as a device on Home Assistant/other)
 - [**Home Assistant**](https://github.com/weegeeday/Droprcam-HACS)
 
 ## Features
