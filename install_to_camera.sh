@@ -14,7 +14,7 @@ fi
 read -p "Enter your camera's IP address (e.g. 192.168.1.100): " CAM_IP
 
 # Get the host's IP address (used for the python HTTP server)
-HOST_IP=$(ip -o route get to $CAM_IP | sed -n 's/.*src \([0-9.]\+\).*/\1/p')
+HOST_IP=$(ip -o route get to "$CAM_IP" | sed -n 's/.*src \([0-9.]\+\).*/\1/p')
 
 if [ -z "$HOST_IP" ]; then
     echo "[-] Error: Could not determine host IP address."
@@ -38,8 +38,7 @@ CMD="wget http://$HOST_IP:8000/droprcam -O /tmp/droprcam && chmod +x /tmp/droprc
 (
   sleep 1
   echo "$CMD"
-  sleep 15
-) | telnet $CAM_IP || true
+) | telnet "$CAM_IP" || true
 
 echo "[+] Waiting for camera to reboot and start Droprcam..."
 sleep 20
