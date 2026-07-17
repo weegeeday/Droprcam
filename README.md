@@ -38,7 +38,7 @@ Simply run the setup script. It will automatically download the correct Go 1.20 
 ### 2. Deploy to Camera
 Once built, transfer the `droprcam` binary to your camera (which must be in a rooted state). Due to size constraints, place it on the `/root/` persistent filesystem.
 
-If you are using the `dropcam-rooter` exploit, please read the **[Installation HOWTO](wiki/HOWTO.md)** for exact instructions on how to hook the daemon into the boot sequence!
+If you are using the [dropcam-rooter](https://github.com/weegeeday/Dropcam-Rooter) exploit, please read the **[Installation HOWTO](wiki/HOWTO.md)** for exact instructions on how to hook the daemon into the boot sequence!
 
 ```bash
 # On the camera telnet shell
