@@ -31,7 +31,7 @@ Disengages the infrared cut filter (flips the filter IN to block IR light for no
   * **Content:** `{"status":"ok", "message":"Night vision disabled"}`
 
 ### Set Status LED
-Changes the color of the front-facing status LED array. Supported colors on the Dropcam HD are `blue`, `yellow`, `red`, and `white`. Passing an unknown color (or `off`) will disable the LEDs.
+Changes the color of the front-facing status LED array. Supported colors on the Dropcam HD are `blue`, `yellow`, `red`, and `white`. Passing an unknown color (or `off`) will disable the LEDs. LED Colors are currently not accurate. It does change the led color, but not to the right one.
 
 * **URL:** `/led/{color}`
 * **Method:** `GET`
