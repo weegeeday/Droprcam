@@ -6,6 +6,11 @@ Instead of relying on the Nest cloud, Droprcam boots the hardware from a raw sta
 
 This completely frees the camera, turning it into a standard local IP camera perfect for integration into **Home Assistant**, **Scrypted**, or **HomeKit**.
 
+
+
+# Plugins (Using this camera as a device on Home Assitant/other)
+- [**Home Assistant**](https://github.com/weegeeday/Droprcam-HACS)
+
 ## Features
 
 - **Zero Cloud Dependency:** Runs entirely on the camera's local area network.
